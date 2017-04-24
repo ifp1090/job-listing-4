@@ -1,0 +1,26 @@
+.pagination {
+  span, em, a {
+    float: left;
+    padding: 0 10px;
+    border: 1px solid #d3dce6;
+    border-right: 0;
+    background: #fff;
+    font-size: 13px;
+    min-width: 28px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    &:hover {
+      text-decoration: none;
+    }
+    &.current {
+      font-style: normal;
+      border-color: #20a0ff;
+      background-color: #20a0ff;
+      color: #fff;
+      cursor: default;
+    }
+  }
+}

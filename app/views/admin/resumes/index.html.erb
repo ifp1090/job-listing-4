@@ -1,0 +1,9 @@
+<h2> <%= @job.title %> - 简历列表 </h2>
+
+<hr>
+
+<% if @resumes.length > 0 %>
+	<%= render :partial => "resume", :collection => @resumes, :as => :resume %>
+<% else %>
+  <p class="empty-message">目前还没有面试者投过这个职位</p>
+<% end %>

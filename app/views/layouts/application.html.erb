@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NewJob，更专业的互联网招聘平台</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'https://unpkg.com/element-ui/lib/theme-default/index.css' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  </head>
+
+  <body>
+    <div class="row">
+     <%= render "common/navbar" %>
+    </div>
+    <% if current_page?('/') %>
+      <div>
+    <% else %>
+      <div class="container-fluid wrapper-container container">
+      <%= render "common/flashes" %>
+    <% end %>
+      <%= yield %>
+    </div>
+
+    <%= render "common/footer" %>
+    </div>
+  </body>
+</html>

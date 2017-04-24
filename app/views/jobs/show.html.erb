@@ -1,0 +1,26 @@
+<div class="col-md-12 show">
+  <%= link_to(jobs_path, class: "btn btn-default back-btn") do  %>
+    <span class="fa fa-arrow-left" style="margin-right: 10px;"></span>返回工作列表
+  <% end %>
+  <p class="company_name"><%= link_to(@job.company_name, '/jobs/search?utf8=✓&q=' + @job.company_name) %></p>
+  <h2 class="job_title"><%= @job.title %></h2>
+  
+  <p class="info">
+    <span class="salary"> <span class="label label-default"><%= @job.wage_lower_bound %>k</span> - <span class="label label-default"><%= @job.wage_upper_bound %>k</span> </span>
+    <span>/</span>
+    <span><span class="fa fa-map-marker"></span>上班地点 北京</span>
+    <span>/</span>
+    <span><span class="fa fa-calendar"></span><%= formatDate(@job.created_at) %> 发布</span>
+  </p>
+  
+  <p class="send-resume">
+    <%= render 'resume_btn', :job => @job %> 
+  </p>
+  
+  <hr>
+
+  <p class="description-title"><strong>职位详情：</strong></p>
+  <p class="description">
+    <%= render_job_description(@job) %>
+  </p>
+</div>

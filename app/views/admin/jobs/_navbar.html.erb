@@ -1,0 +1,23 @@
+<div class="nav-side-menu">
+  <div class="brand"></div>
+  <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  <div class="menu-list">
+    <ul id="menu-content" class="menu-content collapse out">
+      <li>
+        <%= link_to(admin_jobs_path) do %>
+          <i class="fa fa-list-alt fa-lg"></i> 管理所有职位
+        <% end %>
+      </li>
+      <li>
+        <%= link_to(jobs_path) do %>
+          <i class="fa fa-list fa-lg"></i> 查看已发布职位
+        <% end %>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-user fa-lg"></i> 账号设置
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

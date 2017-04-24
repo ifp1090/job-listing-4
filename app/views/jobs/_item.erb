@@ -1,0 +1,13 @@
+<div class="list_item clearfix">
+  <div class="left fl">
+    <div class="position_name clearfix">
+      <h2 class="fl"><%= link_to(job.title, job_path(job)) %></h2>
+      <span class="fl"><%= sliceDate(job) %>发布</span>
+    </div>
+    <div class="salary"><%= job.wage_lower_bound %> - <%= job.wage_upper_bound %></div>
+  </div>
+  <div class="right fr">
+    <div class="company"><%= job.company_name %></div>
+    <div class="location"><%= job.location %></div>
+  </div>
+</div>

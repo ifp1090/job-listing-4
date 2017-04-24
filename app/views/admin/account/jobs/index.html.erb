@@ -1,0 +1,54 @@
+
+<div class="group">
+  <%= link_to("添加职位", new_admin_account_job_path, class: "btn btn-success pull-right") %>
+</div>
+
+<% if @jobs.length > 0 %>
+  <table class="table table-hover table-boldered table-striped custab">
+    <thead>
+      <tr>
+        <th>职位名称</th>
+        <th>收到简历数量</th>
+        <th>工作种类</th>
+        <th>工资</th>
+        <th>公司名称</th>
+        <th>公司地点</th> 
+        <th>发布时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td>
+            <%= render_job_status(job) %>
+            <%= link_to(job.title, job_path(job)) %>
+          </td>
+          <td> <%= link_to(job.resumes.count, admin_job_resumes_path(job)) %> </td>
+          <td> <%= job.category_name %> </td>
+          <td> <span class="label label-default"><%= job.wage_lower_bound %>k - <%= job.wage_upper_bound %>k</span> </td>
+          <td><%= link_to(job.company_name, '/jobs/search?utf8=✓&q=' + job.company_name) %></td>
+          <td><span class="fa fa-map-marker"></span> <%= job.location %></td>
+          <td><%= formatTime(job.created_at) %></td>
+          <td>
+          <%= link_to edit_admin_account_job_path(job), class: "btn btn-xs btn-info" do %><span class="fa fa-pencil"></span> 编辑<% end %>
+            |
+            <% if job.is_hidden %>
+              <%= link_to publish_admin_account_job_path(job) , :method => :post, :class => "btn btn-xs btn-success" do %><span class="fa fa-eye"></span>发布<% end %>
+            <% else %>
+              <%= link_to hide_admin_account_job_path(job), :method => :post,  :class => "btn btn-xs btn-warning" do %><span class="fa fa-eye-slash"></span>隐藏<% end %>
+            <% end %>
+            |
+            <%= link_to admin_account_job_path(job), :method => :delete, :class => "btn btn-xs  btn-danger", :data => { :confirm => "Are you sure?" } do %><span class="fa fa-trash"></span> 删除<% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="text-center">
+    <%= will_paginate @jobs %>
+  </div>
+<% else %>
+  <p class="empty-message">还没有发布任何职位哦，赶紧添加一个职位试试！</p>
+<% end %>

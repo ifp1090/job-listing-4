@@ -1,0 +1,41 @@
+<div class="search-result">
+<% if @jobs.length > 0 %>
+  <table class="table table-hover table-boldered table-striped custab">
+    <thead>
+      <tr>
+        <th>职位名称</th>
+        <th>工作种类</th>
+        <th>工资</th>
+        <th>公司名称</th>
+        <th>公司地点</th> 
+        <th>发布时间</th>
+        <% if !current_user || !current_user.is_admin? %>
+        <th>投个简历</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= link_to(job.title, job_path(job)) %></td>
+          <td> <%= job.category_name %> </td>
+          <td><span class="label label-default"><%= job.wage_lower_bound %>k - <%= job.wage_upper_bound %>k</span></td>
+          <td><%= link_to(job.company_name, '/jobs/search?utf8=✓&q=' + job.company_name) %></td>
+          <td><span class="fa fa-map-marker"></span> <%= job.location %></td>
+          <td><%= formatDate(job.created_at) %></td>
+          <% if !current_user || !current_user.is_admin? %>
+          <td><%= render 'resume_btn', :job => job %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="text-center">
+    <%= will_paginate @jobs %>
+  </div>
+
+<% else %>
+  <p class="empty-message">很抱歉，没有搜到相关职位哦，试试搜一下其他的关键词</p>
+<% end %>
+</div>
